@@ -1,89 +1,20 @@
 <!doctype html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>D6shop</title>
-<style>
-:root{color-scheme:light dark;--bg:light-dark(#f7f7f4,#0c0d0e);--surface:light-dark(#fff,#151719);--surface2:light-dark(#efefe9,#1d2023);--text:light-dark(#111,#f5f5f2);--muted:light-dark(#686b67,#a6aaa5);--line:light-dark(#deded6,#303338);--accent:#b9ff39;--dark:#111;}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--text)}button,input,select{font:inherit}.root{min-height:100vh;background-color:var(--bg)}
-.top{background:#111;color:#fff;text-align:center;padding:9px 16px;font-size:12px;letter-spacing:.08em;text-transform:uppercase}.nav{max-width:1180px;margin:auto;height:76px;display:flex;align-items:center;gap:30px;padding:0 24px}.logo{font-weight:900;font-size:25px;letter-spacing:-.07em}.logo span{color:var(--accent)}.links{display:flex;gap:24px;margin-left:18px}.links a{color:inherit;text-decoration:none;font-size:14px}.actions{margin-left:auto;display:flex;align-items:center;gap:10px}.iconbtn{border:1px solid var(--line);background:var(--surface);color:var(--text);width:42px;height:42px;border-radius:50%;cursor:pointer}.cart{position:relative}.count{position:absolute;right:-2px;top:-3px;background:var(--accent);color:#111;width:18px;height:18px;border-radius:50%;font-size:11px;display:grid;place-items:center;font-weight:800}
-.hero{max-width:1180px;margin:0 auto;padding:22px 24px 65px}.heroCard{min-height:500px;border-radius:28px;overflow:hidden;position:relative;background:linear-gradient(125deg,#d9ff75 0%,#a6dd2e 48%,#596d31 100%);color:#111;padding:58px;display:flex;align-items:flex-end}.heroCard:after{content:"D6";position:absolute;right:-25px;top:-75px;font-size:330px;font-weight:1000;letter-spacing:-.15em;opacity:.12}.eyebrow{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;margin-bottom:16px}.hero h1{font-size:clamp(48px,7vw,88px);line-height:.9;letter-spacing:-.075em;margin:0 0 20px;max-width:700px}.hero p{font-size:17px;max-width:520px;line-height:1.55;margin:0 0 28px}.cta{display:inline-flex;border:0;background:#111;color:#fff;padding:14px 21px;border-radius:999px;text-decoration:none;font-weight:800;cursor:pointer}.section{max-width:1180px;margin:auto;padding:0 24px 70px}.sectionHead{display:flex;justify-content:space-between;align-items:end;margin-bottom:22px}.section h2{font-size:32px;letter-spacing:-.05em;margin:0}.muted{color:var(--muted)}
-.controls{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px}.search{flex:1;min-width:220px;padding:13px 16px;border:1px solid var(--line);border-radius:12px;background:var(--surface);color:var(--text);outline:none}.filter{padding:13px 16px;border:1px solid var(--line);border-radius:12px;background:var(--surface);color:var(--text)}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.product{background:var(--surface);border:1px solid var(--line);border-radius:18px;overflow:hidden;transition:.2s;cursor:pointer}.product:hover{transform:translateY(-4px)}.visual{aspect-ratio:1/1;background:var(--surface2);display:grid;place-items:center;font-size:68px}.info{padding:15px}.name{font-weight:800}.price{margin-top:7px;font-size:14px}.tag{display:inline-block;background:var(--accent);color:#111;padding:4px 7px;border-radius:6px;font-size:10px;font-weight:900;text-transform:uppercase;margin-bottom:10px}
-.banner{border-radius:24px;background:var(--surface2);padding:38px;display:flex;justify-content:space-between;align-items:center;gap:30px}.banner h3{font-size:34px;letter-spacing:-.05em;margin:0 0 8px}.banner p{margin:0;color:var(--muted)}.footer{border-top:1px solid var(--line);padding:35px 24px;color:var(--muted)}.footerIn{max-width:1180px;margin:auto;display:flex;justify-content:space-between}.drawer{position:fixed;right:0;top:0;height:100%;width:min(390px,100%);background:var(--surface);z-index:10;transform:translateX(105%);transition:.25s;padding:25px;border-left:1px solid var(--line);box-shadow:-20px 0 60px #0002}.drawer.open{transform:translateX(0)}.drawer h2{margin-top:0}.close{float:right;border:0;background:none;color:var(--text);font-size:25px;cursor:pointer}.cartItem{display:flex;gap:12px;padding:15px 0;border-bottom:1px solid var(--line)}.cartTotal{display:flex;justify-content:space-between;font-weight:900;font-size:20px;margin:24px 0}.checkout{width:100%;border:0;background:#111;color:#fff;padding:15px;border-radius:12px;font-weight:800;cursor:pointer}
-@media(max-width:850px){.links{display:none}.grid{grid-template-columns:repeat(2,1fr)}.heroCard{padding:35px;min-height:440px}.banner{display:block}.banner .cta{margin-top:20px}}@media(max-width:520px){.grid{grid-template-columns:1fr 1fr;gap:10px}.visual{font-size:48px}.hero{padding-top:12px}.heroCard{border-radius:20px}.nav{padding:0 16px}.section{padding-left:16px;padding-right:16px}.hero{padding-left:16px;padding-right:16px}}
-</style>
-</head>
-<body>
-<div class="root">
-<div class="top">Free shipping on orders over $75 · New drops every Friday</div>
-<nav class="nav"><div class="logo">D6<span>shop</span></div><div class="links"><a href="#shop">Shop</a><a href="#new">New</a><a href="#about">About</a></div><div class="actions"><button class="iconbtn" aria-label="Search" onclick="document.getElementById('search').focus()">⌕</button><button class="iconbtn cart" aria-label="Cart" onclick="toggleCart()">🛒<span class="count" id="count">0</span></button></div></nav>
-<main>
-<section class="hero"><div class="heroCard"><div><div class="eyebrow">D6shop / New season</div><h1>Good stuff.<br>Zero clutter.</h1><p>A clean collection of everyday essentials, standout pieces, and fresh finds picked for people who like their style simple and their gear useful.</p><a class="cta" href="#shop">Shop the collection →</a></div></div></section>
-<section class="section" id="shop"><div class="sectionHead"><div><div class="eyebrow muted">Curated picks</div><h2>Shop D6</h2></div><span class="muted" id="resultCount">8 products</span></div><div class="controls"><input id="search" class="search" placeholder="Search products…" oninput="render"><select id="filter" class="filter" onchange="render()"><option value="all">All categories</option><option value="apparel">Apparel</option><option value="tech">Tech</option><option value="home">Home</option><option value="accessories">Accessories</option></select></div><div class="grid" id="grid"></div></section>
-<section class="section" id="new"><div class="banner"><div><div class="eyebrow">This week's drop</div><h3>Fresh pieces. Limited quantities.</h3><p>Join the D6 list for first access to new arrivals and occasional member-only offers.</p></div><button class="cta" onclick="subscribe()">Join the list</button></div></section>
-</main>
-<footer class="footer"><div class="footerIn"><div><strong style="color:var(--text)">D6shop</strong><br>Everyday goods, thoughtfully picked.</div><div>© 2026 D6shop</div></div></footer>
-</div>
-<div class="drawer" id="drawer"><button class="close" onclick="toggleCart()">×</button><h2>Your cart</h2><div id="cartItems"><p class="muted">Your cart is empty.</p></div><div class="cartTotal"><span>Total</span><span id="total">$0.00</span></div><button class="checkout" onclick="checkout()">Checkout</button></div>
-<script>
-const products=[
-{id:1,name:'D6 Everyday Tee',cat:'apparel',price:28,emoji:'👕',tag:'Best seller'},
-{id:2,name:'Signal Hoodie',cat:'apparel',price:64,emoji:'🧥',tag:'New'},
-{id:3,name:'D6 Carry Tote',cat:'accessories',price:24,emoji:'👜',tag:''},
-{id:4,name:'Desk Light Mini',cat:'home',price:48,emoji:'💡',tag:'New'},
-{id:5,name:'Pocket Speaker',cat:'tech',price:59,emoji:'🔊',tag:''},
-{id:6,name:'Cloud Cap',cat:'accessories',price:26,emoji:'🧢',tag:''},
-{id:7,name:'Ceramic Mug',cat:'home',price:22,emoji:'☕',tag:''},
-{id:8,name:'D6 Wireless Buds',cat:'tech',price:79,emoji:'🎧',tag:'Popular'}];
-
-let cart=[];
-
-function render(){
-const q=document.getElementById('search').value.toLowerCase();
-const f=document.getElementById('filter').value;
-const list=products.filter(p=>(f==='all'||p.cat===f)&&p.name.toLowerCase().includes(q));
-document.getElementById('resultCount').textContent=list.length+' product'+(list.length===1?'':'s');
-document.getElementById('grid').innerHTML=list.map(p=>`<article class="product" onclick="add(${p.id})"><div class="visual">${p.emoji}</div><div class="info">${p.tag?`<span class="tag">${p.tag}</span>`:''}<div class="name">${p.name}</div><div class="price">$${p.price.toFixed(2)}</div></div></article>`).join('')||'<p class="muted">No products found.</p>';
-}
-
-function add(id){
-const p=products.find(x=>x.id===id);
-const existing=cart.find(x=>x.id===id);
-if(existing)existing.qty++;
-else cart.push({...p,qty:1});
-updateCart();
-toggleCart(true);
-}
-
-function updateCart(){
-document.getElementById('count').textContent=cart.reduce((s,p)=>s+p.qty,0);
-document.getElementById('cartItems').innerHTML=cart.length?cart.map(p=>`<div class="cartItem"><div style="font-size:30px">${p.emoji}</div><div style="flex:1"><strong>${p.name}</strong><div class="muted">${p.qty} × $${p.price.toFixed(2)}</div></div><button class="iconbtn" onclick="removeItem(${p.id})">−</button></div>`).join(''):'<p class="muted">Your cart is empty.</p>';
-document.getElementById('total').textContent='$'+cart.reduce((s,p)=>s+p.price*p.qty,0).toFixed(2);
-}
-
-function removeItem(id){
-const p=cart.find(x=>x.id===id);
-if(!p)return;
-if(p.qty>1)p.qty--;
-else cart=cart.filter(x=>x.id!==id);
-updateCart();
-}
-
-function toggleCart(force){
-document.getElementById('drawer').classList.toggle('open',force===true?true:undefined);
-}
-
-function subscribe(){
-alert('Thanks for joining D6shop! (Demo)');
-}
-
-function checkout(){
-alert(cart.length?'Checkout is ready for connection to your payment provider. (Demo)':'Your cart is empty.');
-}
-
-render();
-updateCart();
-</script>
-</body>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <style>
+      html, body {
+        margin: 0;
+        width: 100%;
+        min-height: 100vh;
+        background: #fff;
+      }
+      body {
+        display: block;
+      }
+    </style>
+  </head>
+  <body></body>
 </html>
