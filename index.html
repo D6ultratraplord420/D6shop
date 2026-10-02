@@ -3,376 +3,280 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <title>D6shop</title>
 
 <style>
-:root {
-  --bg: #f7f7f5;
-  --card: #ffffff;
-  --text: #111111;
-  --muted: #70736f;
-  --line: #e2e2dd;
-  --accent: #b9ff39;
-}
-
 * {
   box-sizing: border-box;
 }
 
-html {
-  scroll-behavior: smooth;
+html,
+body {
+  margin: 0;
+  width: 100%;
+  min-height: 100%;
 }
 
 body {
-  margin: 0;
-  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: var(--bg);
-  color: var(--text);
+  min-height: 100vh;
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(140, 0, 255, 0.22),
+      transparent 38%
+    ),
+    radial-gradient(
+      circle at 20% 80%,
+      rgba(100, 0, 255, 0.12),
+      transparent 35%
+    ),
+    #000;
+  font-family: Arial, sans-serif;
+  color: #fff;
+  overflow-x: hidden;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+/* PURPLE AMBIENT GLOW */
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  width: 450px;
+  height: 450px;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(120px);
+  opacity: .18;
 }
 
-button,
-input {
-  font: inherit;
+body::before {
+  background: #8b00ff;
+  top: -220px;
+  left: -180px;
 }
 
-/* TOP BAR */
-
-.top {
-  background: #111;
-  color: white;
-  text-align: center;
-  padding: 9px 16px;
-  font-size: 11px;
-  letter-spacing: .12em;
-  text-transform: uppercase;
+body::after {
+  background: #6a00ff;
+  bottom: -250px;
+  right: -180px;
 }
 
-/* NAVIGATION */
-
-.nav {
-  max-width: 1180px;
-  margin: auto;
-  height: 76px;
-  display: flex;
-  align-items: center;
-  padding: 0 24px;
-  border-bottom: 1px solid var(--line);
-}
-
-.logo {
-  font-size: 26px;
-  font-weight: 950;
-  letter-spacing: -.08em;
-}
-
-.logo span {
-  color: #78a900;
-}
-
-.navlinks {
-  display: flex;
-  gap: 28px;
-  margin-left: 45px;
-  font-size: 14px;
-  font-weight: 700;
-}
-
-.navlinks a:hover {
-  opacity: .55;
-}
-
-.search {
-  margin-left: auto;
-  width: 210px;
-  border: 1px solid var(--line);
-  background: white;
-  border-radius: 999px;
-  padding: 11px 16px;
-  outline: none;
-}
-
-/* HERO */
-
-.hero {
-  max-width: 1180px;
-  margin: auto;
-  padding: 30px 24px 45px;
-}
-
-.heroCard {
-  min-height: 370px;
-  border-radius: 26px;
-  background: #dfff82;
+/* STAR BANNER */
+.banner {
   position: relative;
+  width: 100%;
+  height: 220px;
+  background: #020202;
+  border: 2px solid #7d00ff;
+  border-radius: 0 0 24px 24px;
+  box-shadow:
+    0 0 15px rgba(132, 0, 255, .8),
+    0 0 45px rgba(132, 0, 255, .45),
+    inset 0 0 35px rgba(132, 0, 255, .12);
   overflow: hidden;
-  padding: 55px;
-  display: flex;
-  align-items: flex-end;
 }
 
-.heroCard:after {
-  content: "D6";
+/* DETAILED STAR FIELD */
+.stars,
+.stars::before,
+.stars::after {
   position: absolute;
-  right: -25px;
-  top: -85px;
-  font-size: 300px;
-  font-weight: 950;
-  letter-spacing: -.12em;
-  opacity: .1;
+  inset: -100%;
+  content: "";
+  background-repeat: repeat;
+  pointer-events: none;
 }
 
-.eyebrow {
-  font-size: 11px;
+.stars {
+  background-image:
+    radial-gradient(circle, #fff 0.7px, transparent 1.4px),
+    radial-gradient(circle, #fff 1px, transparent 1.7px),
+    radial-gradient(circle, #c77dff 0.8px, transparent 1.5px),
+    radial-gradient(circle, #9b3cff 0.6px, transparent 1.4px);
+  background-size:
+    37px 41px,
+    71px 67px,
+    53px 59px,
+    91px 83px;
+  background-position:
+    0 0,
+    15px 20px,
+    30px 5px,
+    50px 35px;
+  animation: starsMove 18s linear infinite;
+  opacity: .9;
+}
+
+.stars::before {
+  background-image:
+    radial-gradient(circle, #fff 1.2px, transparent 2px),
+    radial-gradient(circle, #a64dff 1px, transparent 2px);
+  background-size:
+    113px 97px,
+    149px 137px;
+  background-position:
+    25px 50px,
+    70px 10px;
+  animation: starsMove 30s linear infinite reverse;
+  opacity: .65;
+}
+
+.stars::after {
+  background-image:
+    radial-gradient(circle, #fff 1.5px, transparent 2.5px),
+    radial-gradient(circle, #d49aff 1px, transparent 2px);
+  background-size:
+    173px 157px,
+    211px 191px;
+  background-position:
+    90px 40px,
+    20px 100px;
+  animation: starsDrift 40s linear infinite;
+  opacity: .45;
+}
+
+@keyframes starsMove {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(120px, 90px, 0);
+  }
+}
+
+@keyframes starsDrift {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(-100px, 120px, 0);
+  }
+}
+
+/* GLOWING D6 */
+.logo {
+  position: absolute;
+  z-index: 5;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  color: #d28cff;
+  font-size: clamp(60px, 10vw, 110px);
   font-weight: 900;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  margin-bottom: 13px;
+  letter-spacing: 8px;
+
+  text-shadow:
+    0 0 5px #fff,
+    0 0 10px #d36cff,
+    0 0 20px #b42cff,
+    0 0 35px #9900ff,
+    0 0 60px #7800ff,
+    0 0 100px #5c00ff;
+
+  animation: logoGlow 3s ease-in-out infinite alternate;
 }
 
-.hero h1 {
-  position: relative;
-  z-index: 1;
-  font-size: clamp(48px, 7vw, 82px);
-  line-height: .88;
-  letter-spacing: -.075em;
-  margin: 0 0 18px;
-  max-width: 650px;
+@keyframes logoGlow {
+  from {
+    text-shadow:
+      0 0 5px #fff,
+      0 0 12px #d36cff,
+      0 0 25px #a72cff,
+      0 0 45px #7800ff;
+  }
+
+  to {
+    text-shadow:
+      0 0 7px #fff,
+      0 0 18px #e09aff,
+      0 0 35px #b42cff,
+      0 0 65px #8b00ff,
+      0 0 100px #6500ff;
+  }
 }
 
-.hero p {
-  position: relative;
-  z-index: 1;
-  max-width: 520px;
-  line-height: 1.55;
-  color: #30352b;
-  margin: 0;
-}
-
-/* SECTIONS */
-
-.section {
-  max-width: 1180px;
-  margin: auto;
-  padding: 0 24px 65px;
-}
-
-.sectionHead {
-  display: flex;
-  align-items: end;
-  justify-content: space-between;
-  margin-bottom: 22px;
-}
-
-.section h2 {
-  font-size: 34px;
-  letter-spacing: -.06em;
-  margin: 0;
-}
-
-.muted {
-  color: var(--muted);
-}
-
-/* CATEGORIES */
-
-.categories {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 14px;
-}
-
-.category {
-  min-height: 150px;
-  border: 1px solid var(--line);
-  background: var(--card);
-  border-radius: 20px;
-  padding: 22px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  transition: .2s;
-}
-
-.category:hover {
-  transform: translateY(-3px);
-  border-color: #aaa;
-}
-
-.category strong {
-  font-size: 21px;
-  letter-spacing: -.04em;
-}
-
-.category span {
-  font-size: 12px;
-  color: var(--muted);
-}
-
-.arrow {
-  font-size: 20px;
-  color: var(--text);
-}
-
-/* FILTERS */
-
-.controls {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
-  flex-wrap: wrap;
-}
-
-.filter {
-  border: 1px solid var(--line);
-  background: white;
-  border-radius: 999px;
-  padding: 10px 16px;
-  cursor: pointer;
-  font-weight: 700;
-}
-
-.filter.active,
-.filter:hover {
-  background: #111;
-  color: white;
-  border-color: #111;
-}
-
-/* PRODUCTS */
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-}
-
-.product {
-  background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: 18px;
-  overflow: hidden;
-}
-
-.visual {
-  aspect-ratio: 1 / 1;
-  background: #ededE8;
-  display: grid;
-  place-items: center;
-  font-size: 48px;
-}
-
+/* INFORMATION */
 .info {
-  padding: 16px;
+  position: relative;
+  z-index: 5;
+  text-align: center;
+  margin-top: 55px;
+  padding: 0 20px;
 }
 
-.name {
-  font-weight: 850;
-  margin-bottom: 6px;
+.delivery {
+  font-size: clamp(22px, 4vw, 34px);
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-shadow:
+    0 0 8px rgba(255, 255, 255, .35),
+    0 0 20px rgba(130, 0, 255, .45);
 }
 
-.type {
-  font-size: 12px;
-  color: var(--muted);
+.discord {
+  margin-top: 18px;
+  font-size: clamp(16px, 3vw, 21px);
+  color: #aaa;
 }
 
-/* NOTICE */
+.discord span {
+  color: #fff;
+  font-weight: 900;
+  text-shadow:
+    0 0 5px #fff,
+    0 0 12px #fff,
+    0 0 25px #fff,
+    0 0 45px rgba(255, 255, 255, .9);
 
-.notice {
-  margin-top: 35px;
-  padding: 22px;
-  border: 1px solid var(--line);
-  border-radius: 18px;
-  background: white;
-  font-size: 13px;
-  line-height: 1.5;
-  color: var(--muted);
+  animation: whiteGlow 2s ease-in-out infinite alternate;
 }
 
-/* FOOTER */
-
-.footer {
-  border-top: 1px solid var(--line);
-  padding: 32px 24px;
-  color: var(--muted);
-}
-
-.footerIn {
-  max-width: 1180px;
-  margin: auto;
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-}
-
-/* TABLET */
-
-@media (max-width: 850px) {
-
-  .navlinks {
-    display: none;
+@keyframes whiteGlow {
+  from {
+    text-shadow:
+      0 0 5px #fff,
+      0 0 12px #fff,
+      0 0 20px rgba(255,255,255,.7);
   }
 
-  .search {
-    width: 160px;
-  }
-
-  .categories {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .heroCard {
-    padding: 35px;
-    min-height: 330px;
+  to {
+    text-shadow:
+      0 0 8px #fff,
+      0 0 18px #fff,
+      0 0 35px #fff,
+      0 0 55px rgba(255,255,255,.9);
   }
 }
 
-/* PHONE */
+/* PURPLE GLOW LINE */
+.glow-line {
+  width: 75%;
+  height: 2px;
+  margin: 45px auto;
+  background: #9b32ff;
+  box-shadow:
+    0 0 8px #9b32ff,
+    0 0 20px #7d00ff,
+    0 0 40px #5c00ff;
+}
 
-@media (max-width: 520px) {
-
-  .nav {
-    padding: 0 16px;
+/* MOBILE */
+@media (max-width: 600px) {
+  .banner {
+    height: 170px;
+    border-radius: 0 0 18px 18px;
   }
 
-  .search {
-    width: 145px;
+  .logo {
+    letter-spacing: 5px;
   }
 
-  .hero {
-    padding: 16px 16px 35px;
-  }
-
-  .section {
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-
-  .heroCard {
-    border-radius: 20px;
-    padding: 28px;
-    min-height: 330px;
-  }
-
-  .categories {
-    gap: 10px;
-  }
-
-  .category {
-    min-height: 125px;
-    padding: 16px;
-  }
-
-  .grid {
-    gap: 10px;
+  .glow-line {
+    width: 85%;
   }
 }
 </style>
@@ -380,395 +284,26 @@ input {
 
 <body>
 
-<!-- TOP BAR -->
+<header class="banner">
+  <div class="stars"></div>
+  <div class="logo">D6</div>
+</header>
 
-<div class="top">
-  D6shop · Product Catalog
+<div class="info">
+
+  <div class="delivery">
+    Statewide Delivery, Local 315/607
+  </div>
+
+  <div class="discord">
+    Contact Me On Discord:
+    <span>d911040408</span>
+  </div>
+
 </div>
 
-<!-- NAVIGATION -->
-
-<nav class="nav">
-
-  <a class="logo" href="#">
-    D6<span>shop</span>
-  </a>
-
-  <div class="navlinks">
-    <a href="#categories">Categories</a>
-    <a href="#products">Products</a>
-  </div>
-
-  <input
-    id="search"
-    class="search"
-    type="search"
-    placeholder="Search..."
-    oninput="render()"
-  >
-
-</nav>
-
-<main>
-
-<!-- HERO -->
-
-<section class="hero">
-
-  <div class="heroCard">
-
-    <div>
-
-      <div class="eyebrow">
-        D6shop
-      </div>
-
-      <h1>
-        Simple.<br>
-        Clean.<br>
-        D6.
-      </h1>
-
-      <p>
-        Browse the D6shop catalog by category.
-        Product information can be added as the catalog grows.
-      </p>
-
-    </div>
-
-  </div>
-
-</section>
-
-<!-- CATEGORIES -->
-
-<section class="section" id="categories">
-
-  <div class="sectionHead">
-
-    <div>
-      <div class="eyebrow muted">
-        Browse
-      </div>
-
-      <h2>
-        Categories
-      </h2>
-    </div>
-
-  </div>
-
-  <div class="categories">
-
-    <a
-      class="category"
-      href="#products"
-      onclick="setCategory('Flower')"
-    >
-      <strong>Flower</strong>
-
-      <span>
-        View collection
-        <b class="arrow">→</b>
-      </span>
-    </a>
-
-    <a
-      class="category"
-      href="#products"
-      onclick="setCategory('Disposables')"
-    >
-      <strong>Disposables</strong>
-
-      <span>
-        View collection
-        <b class="arrow">→</b>
-      </span>
-    </a>
-
-    <a
-      class="category"
-      href="#products"
-      onclick="setCategory('Carts')"
-    >
-      <strong>Carts</strong>
-
-      <span>
-        View collection
-        <b class="arrow">→</b>
-      </span>
-    </a>
-
-    <a
-      class="category"
-      href="#products"
-      onclick="setCategory('Edibles')"
-    >
-      <strong>Edibles</strong>
-
-      <span>
-        View collection
-        <b class="arrow">→</b>
-      </span>
-    </a>
-
-  </div>
-
-</section>
-
-<!-- PRODUCTS -->
-
-<section class="section" id="products">
-
-  <div class="sectionHead">
-
-    <div>
-
-      <div class="eyebrow muted">
-        Catalog
-      </div>
-
-      <h2>
-        Products
-      </h2>
-
-    </div>
-
-    <span
-      class="muted"
-      id="resultCount"
-    ></span>
-
-  </div>
-
-  <!-- FILTERS -->
-
-  <div class="controls">
-
-    <button
-      class="filter active"
-      data-cat="All"
-      onclick="setCategory('All')"
-    >
-      All
-    </button>
-
-    <button
-      class="filter"
-      data-cat="Flower"
-      onclick="setCategory('Flower')"
-    >
-      Flower
-    </button>
-
-    <button
-      class="filter"
-      data-cat="Disposables"
-      onclick="setCategory('Disposables')"
-    >
-      Disposables
-    </button>
-
-    <button
-      class="filter"
-      data-cat="Carts"
-      onclick="setCategory('Carts')"
-    >
-      Carts
-    </button>
-
-    <button
-      class="filter"
-      data-cat="Edibles"
-      onclick="setCategory('Edibles')"
-    >
-      Edibles
-    </button>
-
-  </div>
-
-  <!-- PRODUCT GRID -->
-
-  <div
-    class="grid"
-    id="grid"
-  ></div>
-
-  <div class="notice">
-
-    Product names, images, descriptions, and other catalog
-    information can be replaced with your actual product details.
-
-  </div>
-
-</section>
-
-</main>
-
-<!-- FOOTER -->
-
-<footer class="footer">
-
-  <div class="footerIn">
-
-    <div>
-      <strong style="color:#111">
-        D6shop
-      </strong>
-      <br>
-      Clean catalog. Simple design.
-    </div>
-
-    <div>
-      © 2026 D6shop
-    </div>
-
-  </div>
-
-</footer>
-
-<script>
-
-const products = [
-
-  {
-    id: 1,
-    name: "Product Name",
-    cat: "Flower",
-    emoji: "🌿"
-  },
-
-  {
-    id: 2,
-    name: "Product Name",
-    cat: "Flower",
-    emoji: "🌿"
-  },
-
-  {
-    id: 3,
-    name: "Product Name",
-    cat: "Disposables",
-    emoji: "▣"
-  },
-
-  {
-    id: 4,
-    name: "Product Name",
-    cat: "Disposables",
-    emoji: "▣"
-  },
-
-  {
-    id: 5,
-    name: "Product Name",
-    cat: "Carts",
-    emoji: "◉"
-  },
-
-  {
-    id: 6,
-    name: "Product Name",
-    cat: "Carts",
-    emoji: "◉"
-  },
-
-  {
-    id: 7,
-    name: "Product Name",
-    cat: "Edibles",
-    emoji: "●"
-  },
-
-  {
-    id: 8,
-    name: "Product Name",
-    cat: "Edibles",
-    emoji: "●"
-  }
-
-];
-
-let activeCategory = "All";
-
-function setCategory(category) {
-
-  activeCategory = category;
-
-  document
-    .querySelectorAll(".filter")
-    .forEach(button => {
-
-      button.classList.toggle(
-        "active",
-        button.dataset.cat === category
-      );
-
-    });
-
-  render();
-
-}
-
-function render() {
-
-  const searchInput =
-    document.getElementById("search");
-
-  const query =
-    searchInput.value.toLowerCase().trim();
-
-  const list = products.filter(product => {
-
-    const categoryMatch =
-      activeCategory === "All" ||
-      product.cat === activeCategory;
-
-    const searchMatch =
-      product.name.toLowerCase().includes(query) ||
-      product.cat.toLowerCase().includes(query);
-
-    return categoryMatch && searchMatch;
-
-  });
-
-  document.getElementById("resultCount").textContent =
-    list.length +
-    " product" +
-    (list.length === 1 ? "" : "s");
-
-  document.getElementById("grid").innerHTML =
-    list.map(product => `
-
-      <article class="product">
-
-        <div class="visual">
-          ${product.emoji}
-        </div>
-
-        <div class="info">
-
-          <div class="name">
-            ${product.name}
-          </div>
-
-          <div class="type">
-            ${product.cat} · Details coming soon
-          </div>
-
-        </div>
-
-      </article>
-
-    `).join("") ||
-
-    '<p class="muted">No products found.</p>';
-
-}
-
-render();
-
-</script>
+<div class="glow-line"></div>
 
 </body>
 </html>
+
